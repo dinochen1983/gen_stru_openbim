@@ -1,4 +1,4 @@
-🏗 Simple OpenBIM Frame-Wall Model with Python
+🏗 Simple OpenBIM Model with Python
 
 This project demonstrates how to create a simple structural frame and wall OpenBIM model using Python and IfcOpenShell.
 📦 Features
