@@ -1,8 +1,6 @@
-当然可以 ✅ 下面是加入图片后的简洁 GitHub 介绍页面（使用 Markdown 图片语法）：
-
 ---
 
-# 🏗 Simple OpenBIM Frame-Wall Model with Python
+# 🏗 Simple OpenBIM Model with Python
 
 This project demonstrates how to create a simple structural frame and wall OpenBIM model using **Python** and **IfcOpenShell**.
 
