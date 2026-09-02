@@ -11,8 +11,8 @@ This project demonstrates how to create a simple structural frame and wall OpenB
 ## 📦 Features
 
 - 🏢 IFC project structure (Project, Site, Building, Storey)  
-- 🧱 Columns and beams (structural frame)  
-- 🧱 Simple wall elements  
+- 🧱 Beam, Column, Wall, Slab elements
+- 💾 Input.txt is simple text file generate by other program.
 - 💾 Export to `.ifc` file  
 
 ## 🛠 Tech Stack
@@ -25,7 +25,7 @@ This project demonstrates how to create a simple structural frame and wall OpenB
 
 ```bash
 pip install ifcopenshell
-python create_frame_wall_model.py
+python3 p1.py
 ```
 
 Open the generated IFC file in a BIM viewer (e.g., BlenderBIM, BIMVision).
