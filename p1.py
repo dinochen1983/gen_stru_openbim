@@ -8,7 +8,7 @@ import math
 
 
 Point = namedtuple('Point', ['name', 'type','np','ax', 'ay','bx', 'by','cx', 'cy','dx', 'dy','bb','hh','ang','az','len'])
-data = pd.read_csv('model2b.txt')
+data = pd.read_csv('input.txt')
 points = []
 
 for index, row in data.iterrows():
@@ -215,5 +215,5 @@ for one_point in points:
 
 # Write out to a file
 
-model.write("model3.ifc")
-print('done')
+model.write("output.ifc")
+print('export ifc done')

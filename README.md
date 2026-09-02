@@ -6,7 +6,7 @@ This project demonstrates how to create a simple structural frame and wall OpenB
 
 ## 🖼 Preview
 
-![OpenBIM Frame-Wall Model](https://github.com/dinochen1983/gen_stru_openbim/blob/main/images/images01.png?raw=true)
+![OpenBIM Frame-Wall Model](https://github.com/dinochen1983/gen_stru_openbim/blob/main/images/images01.jpg?raw=true)
 
 ## 📦 Features
 
