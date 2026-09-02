@@ -8,7 +8,7 @@ import math
 
 
 Point = namedtuple('Point', ['name', 'type','np','ax', 'ay','bx', 'by','cx', 'cy','dx', 'dy','bb','hh','ang','az','len'])
-data = pd.read_csv('model2b.txt')
+data = pd.read_csv('model2.ifc')
 points = []
 
 for index, row in data.iterrows():
@@ -55,14 +55,14 @@ storey = run("root.create_entity", model, ifc_class="IfcBuildingStorey", name="G
 
 # Since the site is our top level location, assign it to the project
 # Then place our building on the site, and our storey in the building
-run("aggregate.assign_object", model, relating_object=project, products=[site])
-run("aggregate.assign_object", model, relating_object=site, products=[building])
-run("aggregate.assign_object", model, relating_object=building, products=[storey])
+run("aggregate.assign_object", model, relating_object=project, product=site)
+run("aggregate.assign_object", model, relating_object=site, product=building)
+run("aggregate.assign_object", model, relating_object=building, product=storey)
 
 storeys=[]
 for x in range(12):
     storey = run("root.create_entity", model, ifc_class="IfcBuildingStorey", name="Floor"+str(x))
-    run("aggregate.assign_object", model, relating_object=building, products=[storey])
+    run("aggregate.assign_object", model, relating_object=building, product=storey)
     storeys.append(storey)
 
 def calculate_angle(ax, ay, bx, by):
@@ -115,12 +115,9 @@ for one_point in points:
         matrix[:,3][0:3] = (one_point.ax, one_point.ay, one_point.az-len1)
         run("geometry.edit_object_placement", model, product=wall, matrix=matrix, is_si=True)
         # Place our wall in the ground floor
-        run("spatial.assign_container", model, relating_structure=storeys[2], products=[wall])
+        run("spatial.assign_container", model, relating_structure=storeys[2], product=wall)
         pset = ifcopenshell.api.run("pset.add_pset", model, product=wall, name="Other")
         run("pset.edit_pset", model, pset=pset, properties={"Ax": "0.001", "Ay": "0.001"})
-        pset = ifcopenshell.api.run("pset.add_pset", model, product=wall, name="Other")
-        run("pset.edit_pset", model, pset=pset, properties={"Section": "Rect"})
-
 
     elif (one_point.type =="beam"):
         wall = run("root.create_entity", model, ifc_class="IfcBeam")
@@ -143,7 +140,7 @@ for one_point in points:
         matrix[:,3][0:3] = (ax1, ay1, az)
         run("geometry.edit_object_placement", model, product=wall, matrix=matrix, is_si=True)
         # Place our wall in the ground floor
-        run("spatial.assign_container", model, relating_structure=storeys[2], products=[wall])
+        run("spatial.assign_container", model, relating_structure=storeys[2], product=wall)
         pset = ifcopenshell.api.run("pset.add_pset", model, product=wall, name="Other")
         run("pset.edit_pset", model, pset=pset, properties={"Ax": "0.001", "Ay": "0.001"})
 
@@ -171,10 +168,9 @@ for one_point in points:
         matrix[:,3][0:3] = (ax1, ay1, az-len1)
         run("geometry.edit_object_placement", model, product=wall, matrix=matrix, is_si=True)
         # Place our wall in the ground floor
-        run("spatial.assign_container", model, relating_structure=storeys[2], products=[wall])
+        run("spatial.assign_container", model, relating_structure=storeys[2], product=wall)
         pset = ifcopenshell.api.run("pset.add_pset", model, product=wall, name="Other")
-        run("pset.edit_pset", model, pset=pset, properties={"Ax": "0.001", "Ay": "0.001"})     
-
+        run("pset.edit_pset", model, pset=pset, properties={"Ax": "0.001", "Ay": "0.001"})    
 
     elif (one_point.type =="slab"):
         wall = run("root.create_entity", model, ifc_class="IfcSlab")
@@ -209,7 +205,7 @@ for one_point in points:
         # This is because the rotation origin is always at 0, 0, 0.
         run("geometry.edit_object_placement", model, product=wall, matrix=matrix, is_si=True)
         # Place our wall in the ground floor
-        run("spatial.assign_container", model, relating_structure=storeys[2], products=[wall])
+        run("spatial.assign_container", model, relating_structure=storeys[2], product=wall)
         pset = ifcopenshell.api.run("pset.add_pset", model, product=wall, name="Other")
         run("pset.edit_pset", model, pset=pset, properties={"Ax": "0.001", "Ay": "0.001"})
 
